@@ -16,7 +16,7 @@ public class CreateUserAndPostTable {
 										+ "password VARCHAR(8) NOT NULL,"
 										+ "first_name VARCHAR(20) NOT NULL,"
 										+ "last_name VARCHAR(20) NOT NULL,"
-										+ "isVip VARCHAR(5),"
+										+ "isVip int DEFAULT 0,"
 										+ "PRIMARY KEY (user_name))");
 			
 			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS " + TABLE1_NAME 
@@ -25,7 +25,7 @@ public class CreateUserAndPostTable {
 					+ "author String NOT NULL,"
 					+ "likes int NOT NULL,"
 					+ "shares int NOT NULL,"
-					+ "Date date NOT NULL,"
+					+ "Date String NOT NULL,"
 					+ "PRIMARY KEY (ID))");
 			
 			System.out.print("Create table successfully");	

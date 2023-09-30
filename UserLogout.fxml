@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #8FBC8F;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserLogoutController"> 
+   <center>
+      <Button fx:id="Logout" mnemonicParsing="false" onAction="#UserLogOut" prefHeight="65.0" prefWidth="131.0" style="-fx-background-color: #ffc900;" text="LogOut" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
