@@ -1,30 +1,28 @@
 package RunHub;
 
+
+
 import controller.LoginController;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+import view.LoginScene;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // Load the FXML file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Login.fxml"));
-        Parent root = loader.load();
-        Scene  scene = new Scene(root);
-
-        // Set the controller for the FXML file
         
-        LoginController loginController = loader.getController();
-        loginController.setPrimaryStage(primaryStage);
-        
+    	
+    	LoginScene LogInscene = new LoginScene(); // initiate new scene for login, the format is same in every event
+    	
+    	
+    	primaryStage.setTitle(LogInscene.getTitle()); // the title of the stage is the title of the scene
+    	//primaryStage.setScene(LogInscene.getScene());
+    	
+    	LoginController loginController = LogInscene.getScene("/view/Login.fxml", primaryStage);  // this format would apply every new scene, and keep stage (where login scene kick off) consistent
+    	loginController.setPrimaryStage(primaryStage); 
 
-        primaryStage.setTitle("Data Analytics Hub");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+
     }
 
     public static void main(String[] args) {

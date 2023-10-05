@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="487.0" prefWidth="362.0" spacing="10" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="your.package.name.MenuController">
+
+    <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="6.0" prefHeight="44.0" prefWidth="178.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Menu" textAlignment="RIGHT" textOverrun="CENTER_WORD_ELLIPSIS">
+      <effect>
+         <DropShadow />
+      </effect></Label>
+
+    <Button onAction="#editProfile" text="Edit Profile" />
+    <Button onAction="#addPost" text="Add Post" />
+    <Button onAction="#retrievePostByID" text="Retrieve Post by ID" />
+    <Button onAction="#retrieveTopNPosts" text="Retrieve TOP N Posts" />
+    <Button onAction="#removePost" text="Remove Post" />
+    <Button onAction="#exportPostByID" text="Export Post by ID" />
+    <Button onAction="#upgradeToVIP" style="-fx-background-color: #f5f116;" text="Upgrade to VIP" textFill="#282826" />
+    <Button onAction="#dataVisualizationVIP" style="-fx-background-color: #f5f116;" text="Data Visualization (VIP)" />
+    <Button onAction="#bulkImportPostsVIP" style="-fx-background-color: #f5f116;" text="Bulk Import Social Media Posts (VIP)" />
+    <Button onAction="#logOut" text="Log Out" />
+
+</VBox>

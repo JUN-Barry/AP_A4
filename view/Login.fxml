@@ -18,7 +18,7 @@
         <TextField fx:id="usernameField" layoutX="147.0" layoutY="78.0" prefHeight="25.0" prefWidth="150.0" />
         <PasswordField fx:id="passwordField" layoutX="147.0" layoutY="125.0" prefHeight="25.0" prefWidth="150.0" />
         <Button layoutX="58.0" layoutY="188.0" onAction="#loginButtonClicked" prefHeight="40.0" prefWidth="80.0" text="Login" />
-        <Button layoutX="233.0" layoutY="188.0" onAction="#signupButtonClicked" prefHeight="40.0" prefWidth="80.0" text="Sign Up" />
-        <Label fx:id="statusLabel" layoutX="147.0" layoutY="161.0" prefHeight="17.0" prefWidth="172.0" text="" textFill="#f81919" />
+        <Button fx:id="signupButton" layoutX="233.0" layoutY="188.0" onAction="#signupButtonClicked" prefHeight="40.0" prefWidth="80.0" text="Sign Up" />
+        <Label fx:id="statusLabel" layoutX="47.0" layoutY="161.0" prefHeight="17.0" prefWidth="272.0" text="" textFill="#f81919" />
     </children>
 </AnchorPane>

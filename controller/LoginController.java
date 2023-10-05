@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import Model.ValidUserLoginModel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,68 +12,67 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import view.LoginScene;
+import view.SignUpScene;
 
 public class LoginController {
+	
+	@FXML
+	private Stage primaryStage; // Add this field to hold the primary stage
+	
+   
+	public void setPrimaryStage(Stage primaryStage) {
+		this.primaryStage = primaryStage;
+	}
 
-    @FXML
-    private TextField usernameField;
+	@FXML
+	private TextField usernameField;
 
-    @FXML
-    private PasswordField passwordField;
+	@FXML
+	private PasswordField passwordField;
 
-    @FXML
-    private Button loginButton;
+	@FXML
+	private Button loginButton;
 
-    @FXML
-    private Button signupButton;
+	@FXML
+	private Button signupButton;
 
-    @FXML
-    private Label statusLabel;
+	@FXML
+	private Label statusLabel;
 
-    private Stage primaryStage; // Add this field to hold the primary stage
+	@FXML
+	public void loginButtonClicked() {
+		String username = usernameField.getText();
+		String password = passwordField.getText();
 
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-    }
+		// Replace this with your authentication logic
+		String fullName = ValidUserLoginModel.authenticateUser(username, password);
+		// WelcomeController.setFullName(fullName);
 
-    @FXML
-    private void loginButtonClicked() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+		if (fullName != null) {
+			statusLabel.setText("Login successful, welcome " + fullName + ".");
+			
+			// SWITCH to a new scene
+			
+			
+//			LoginScene LogInscene = new LoginScene(); // keep same
+//			SignUpController signUpController = LogInscene.getScene("/view/WelcomePage2.fxml", this.primaryStage); 
+//			//LoginController loginController = LogInscene.getScene("/view/Login.fxml", this.primaryStage); 
+//			
+//			signUpController.setPrimaryStage(this.primaryStage);
 
-        // Replace this with your authentication logic
-        String fullName = ValidUserLoginModel.authenticateUser(username, password);
-        
-        if  (fullName != null)  {
-             statusLabel.setText("Login successful");
+		} else {
+			statusLabel.setText("Login failed. Please try again.");
+		}
+	}
 
-             try {
-                 // Load the welcome scene
-                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/welcomePage2.fxml"));
-                
-                 Parent root = loader.load();
-
-                 // Access the controller of the welcome scene to set the user's full name
-                 WelcomeController welcomeController = loader.getController();
-                 welcomeController.setFullName(fullName);
-
-                 // Create a new scene
-                 Scene welcomeScene = new Scene(root);
-
-                 // Set the scene on the primary stage
-                 primaryStage.setScene(welcomeScene);
-
-             } catch (IOException e) {
-                 e.printStackTrace();
-             }
-        } else {
-             statusLabel.setText("Login failed. Please try again.");
-        }
-    }
-
-    @FXML
-    private void signupButtonClicked() {
-        // Handle the signup button action here
-        statusLabel.setText("Sign Up button clicked.");
-    }
+	@FXML
+	public void signupButtonClicked(ActionEvent event) {
+		LoginScene LogInscene = new LoginScene(); // keep same
+		
+		SignUpController signUpController = LogInscene.getScene("/view/SignUp.fxml", this.primaryStage); 
+			
+		//LoginController loginController = LogInscene.getScene("/view/Login.fxml", this.primaryStage); 
+		signUpController.setPrimaryStage(this.primaryStage);
+	}
 }

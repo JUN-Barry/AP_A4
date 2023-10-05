@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignUpController">
+    <children>
+        <Label layoutX="18.0" layoutY="30.0" text="Please enter your information">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+        <Label fx:id="statusLabel" layoutX="72.0" layoutY="222.0" prefHeight="20.0" prefWidth="314.0" text="" textFill="#fc300c" />
+        <Label layoutX="70.0" layoutY="70.0" text="Username:" />
+        <Label layoutX="70.0" layoutY="110.0" text="Password:" />
+        <Label layoutX="70.0" layoutY="150.0" text="First Name:" />
+        <Label layoutX="70.0" layoutY="190.0" text="Last Name:" />
+        <TextField fx:id="usernameField" layoutX="200.0" layoutY="66.0" prefHeight="25.0" prefWidth="150.0" />
+        <PasswordField fx:id="passwordField" layoutX="200.0" layoutY="106.0" prefHeight="25.0" prefWidth="150.0" />
+        <TextField fx:id="firstNameField" layoutX="200.0" layoutY="146.0" prefHeight="25.0" prefWidth="150.0" />
+        <TextField fx:id="lastNameField" layoutX="200.0" layoutY="186.0" prefHeight="25.0" prefWidth="150.0" />
+        <Button fx:id="Signupsubmit" layoutX="86.0" layoutY="242.0" mnemonicParsing="false" onAction="#signupSubmitClick" prefHeight="37.0" prefWidth="79.0" text="Register" />
+      <Button fx:id="BackLoginButten" layoutX="236.0" layoutY="242.0" mnemonicParsing="false" onAction="#BackLogInClick" prefHeight="37.0" prefWidth="79.0" text="Back LogIn" />
+    </children>
+</AnchorPane>
