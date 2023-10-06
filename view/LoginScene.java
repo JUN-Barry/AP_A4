@@ -22,30 +22,30 @@ public class LoginScene {
 	}
 	
 	
-	public Scene getScene() {
-		
-		// load FXML
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Login.fxml"));
-		
-		// load the FXML
-		Parent parentNode = null;
-		try {
-			parentNode = loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		LoginController LoginController = new LoginController();
-		LoginController.setPrimaryStage(primaryStage);
-		
-		// create a scene
-		Scene scene = new Scene(parentNode);
-		
-		return scene;
-		
-		
-		
-	}
+//	public Scene getScene() {
+//		
+//		// load FXML
+//		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Login.fxml"));
+//		
+//		// load the FXML
+//		Parent parentNode = null;
+//		try {
+//			parentNode = loader.load();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		LoginController LoginController = new LoginController();
+//		LoginController.setPrimaryStage(primaryStage);
+//		
+//		// create a scene
+//		Scene scene = new Scene(parentNode);
+//		
+//		return scene;
+//		
+//		
+//		
+//	}
 	
 	public <T> T getScene(String fxmlfile, Stage primaryStage) {
 		// use to every fxml loading

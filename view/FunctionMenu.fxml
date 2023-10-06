@@ -2,25 +2,60 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="487.0" prefWidth="362.0" spacing="10" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="your.package.name.MenuController">
+<VBox prefHeight="262.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FunctionMenuController">
+   <HBox id="VBox" prefHeight="46.0" prefWidth="646.0">
+      <children>
+      
+          <!-- Welcome Label -->
+          <Label prefHeight="38.0" prefWidth="110.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text=" Welcome" />
+         <TextField fx:id="fullNamefill" prefHeight="37.0" prefWidth="169.0" />
+      </children>
+   </HBox>
+   <ToolBar prefHeight="59.0" prefWidth="639.0">
+     <items>
+      
+           <!-- Edit Profile -->
+           <Button fx:id="editProfilebutton" onAction="#editProfile" text="Edit Profile" />
+      
+           <!-- Add Post -->
+           <Button fx:id="addPostButton" onAction="#addPost" text="Add Post" />
+      
+           <!-- Retrieve Post by ID -->
+           <Button fx:id="retrievePostByIDButton" onAction="#retrievePostByID" text="Retrieve Post by ID" />
+      
+           <!-- Retrieve TOP N Posts -->
+           <Button fx:id="retrieveTopNPostsButton" onAction="#retrieveTopNPosts" text="Retrieve TOP N Posts" />
+      
+           <!-- Remove Post -->
+           <Button fx:id="removePostButton" onAction="#removePost" text="Remove Post" />
+      
+           <!-- Export Post by ID -->
+           <Button fx:id="exportPostByIDButton" onAction="#exportPostByID" text="Export Post by ID" />
+     </items>
+   </ToolBar>
 
-    <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="6.0" prefHeight="44.0" prefWidth="178.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Menu" textAlignment="RIGHT" textOverrun="CENTER_WORD_ELLIPSIS">
-      <effect>
-         <DropShadow />
-      </effect></Label>
+    <!-- ToolBar for Menu Items -->
+    <ToolBar orientation="VERTICAL" prefHeight="104.0" prefWidth="688.0" style="-fx-background-color: #f5f116;">
 
-    <Button onAction="#editProfile" text="Edit Profile" />
-    <Button onAction="#addPost" text="Add Post" />
-    <Button onAction="#retrievePostByID" text="Retrieve Post by ID" />
-    <Button onAction="#retrieveTopNPosts" text="Retrieve TOP N Posts" />
-    <Button onAction="#removePost" text="Remove Post" />
-    <Button onAction="#exportPostByID" text="Export Post by ID" />
-    <Button onAction="#upgradeToVIP" style="-fx-background-color: #f5f116;" text="Upgrade to VIP" textFill="#282826" />
-    <Button onAction="#dataVisualizationVIP" style="-fx-background-color: #f5f116;" text="Data Visualization (VIP)" />
-    <Button onAction="#bulkImportPostsVIP" style="-fx-background-color: #f5f116;" text="Bulk Import Social Media Posts (VIP)" />
-    <Button onAction="#logOut" text="Log Out" />
+        <!-- Upgrade to VIP -->
+        <Button fx:id="upgradeToVIPButton" onAction="#upgradeToVIP" text="Upgrade to VIP" textFill="#282826" />
 
+        <!-- Data Visualization (VIP) -->
+        <Button fx:id="dataVisualizationVIPButton" onAction="#dataVisualizationVIP" text="Data Visualization (VIP)" textFill="#282826" />
+
+        <!-- Bulk Import Social Media Posts (VIP) -->
+        <Button fx:id="bulkImportPostsVIPButton" onAction="#bulkImportPostsVIP" text="Bulk Import Social Media Posts (VIP)" textFill="#282826" />
+    </ToolBar>
+   <ToolBar nodeOrientation="RIGHT_TO_LEFT" orientation="VERTICAL" prefHeight="38.0" prefWidth="683.0">
+     <items>
+      
+           <!-- Log Out -->
+           <Button fx:id="logOutbutton" contentDisplay="RIGHT" onAction="#logOut" prefHeight="25.0" prefWidth="96.0" style="-fx-background-color: #11f211;" text="Log Out" textAlignment="RIGHT" textFill="#202220" />
+     </items>
+   </ToolBar>
 </VBox>

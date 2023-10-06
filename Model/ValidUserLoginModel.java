@@ -31,6 +31,8 @@ public class ValidUserLoginModel {
 	    
 	    return null; // Return null if authentication fails.
 	}
+	
+	// write a method to get fullName from the above method
 
 }
 

@@ -20,10 +20,17 @@ public class LoginController {
 	@FXML
 	private Stage primaryStage; // Add this field to hold the primary stage
 	
+	@FXML
+	private String fullName;
+	
    
 	public void setPrimaryStage(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 	}
+	
+	public String getFullName() {
+        return fullName;
+    }
 
 	@FXML
 	private TextField usernameField;
@@ -54,12 +61,10 @@ public class LoginController {
 			
 			// SWITCH to a new scene
 			
-			
-//			LoginScene LogInscene = new LoginScene(); // keep same
-//			SignUpController signUpController = LogInscene.getScene("/view/WelcomePage2.fxml", this.primaryStage); 
-//			//LoginController loginController = LogInscene.getScene("/view/Login.fxml", this.primaryStage); 
-//			
-//			signUpController.setPrimaryStage(this.primaryStage);
+			LoginScene LogInscene = new LoginScene(); // keep same
+			FunctionMenuController functionmenucontroller  = LogInscene.getScene("/view/FunctionMenu.fxml", this.primaryStage); 
+			functionmenucontroller.setPrimaryStage(this.primaryStage);
+			functionmenucontroller.setFullName(fullName);
 
 		} else {
 			statusLabel.setText("Login failed. Please try again.");
