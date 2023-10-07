@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateProfileController">
+    <children>
+        <Label layoutX="18.0" layoutY="30.0" text="This is your profile, you can edit it in the cell.">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+        <Label fx:id="statusLabel" layoutX="72.0" layoutY="222.0" prefHeight="20.0" prefWidth="314.0" text="" textFill="#fc300c" />
+        <Label layoutX="70.0" layoutY="70.0" text="Username:" />
+        <Label layoutX="70.0" layoutY="110.0" text="Password:" />
+        <Label layoutX="70.0" layoutY="150.0" text="First Name:" />
+        <Label layoutX="70.0" layoutY="190.0" text="Last Name:" />
+        <TextField fx:id="usernameField" layoutX="200.0" layoutY="66.0" prefHeight="25.0" prefWidth="150.0" />
+      <TextField fx:id="passwordField" layoutX="200.0" layoutY="106.0" prefHeight="25.0" prefWidth="150.0" />
+        <TextField fx:id="firstNameField" layoutX="200.0" layoutY="146.0" prefHeight="25.0" prefWidth="150.0" />
+        <TextField fx:id="lastNameField" layoutX="200.0" layoutY="186.0" prefHeight="25.0" prefWidth="150.0" />
+        <Button fx:id="Confirmsubmit" layoutX="236.0" layoutY="249.0" mnemonicParsing="false" onAction="#confirmClick" prefHeight="37.0" prefWidth="79.0" text="Confirm" />
+      <Button fx:id="BackMenuButten" layoutX="16.0" layoutY="249.0" mnemonicParsing="false" onAction="#BackMenuClick" prefHeight="37.0" prefWidth="109.0" text="Back to Menu" />
+    </children>
+</AnchorPane>

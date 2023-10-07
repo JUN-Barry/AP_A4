@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+
+import ConstructorClass.UserInfo;
 import Model.ValidUserLoginModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +25,9 @@ public class LoginController {
 	@FXML
 	private String fullName;
 	
+	
+	private  UserInfo user;
+	
    
 	public void setPrimaryStage(Stage primaryStage) {
 		this.primaryStage = primaryStage;
@@ -31,6 +36,11 @@ public class LoginController {
 	public String getFullName() {
         return fullName;
     }
+	
+	public  UserInfo getUser() {
+        return user;
+    }
+	// why here would print null value?
 
 	@FXML
 	private TextField usernameField;
@@ -53,7 +63,9 @@ public class LoginController {
 		String password = passwordField.getText();
 
 		// Replace this with your authentication logic
-		String fullName = ValidUserLoginModel.authenticateUser(username, password);
+       String fullName = ValidUserLoginModel.authenticateUser(username, password);
+		//UserInfo user = ValidUserLoginModel.getUserInfo(username);	
+		
 		// WelcomeController.setFullName(fullName);
 
 		if (fullName != null) {
@@ -65,6 +77,16 @@ public class LoginController {
 			FunctionMenuController functionmenucontroller  = LogInscene.getScene("/view/FunctionMenu.fxml", this.primaryStage); 
 			functionmenucontroller.setPrimaryStage(this.primaryStage);
 			functionmenucontroller.setFullName(fullName);
+			
+			//this.user = ValidUserLoginModel.getUserInfo(username);	  //get the information of the user, for future edit
+			functionmenucontroller.setUser(ValidUserLoginModel.getUserInfo(username));
+			System.out.println(this.user.getFirstName());
+			//			String usernameLogin = user.getUsername();
+//			String firstnameLogin = user.getFirstName();
+//			String lastnameLogin = user.getLastName();
+//			String passwordLogin = user.getPassword();
+			
+			
 
 		} else {
 			statusLabel.setText("Login failed. Please try again.");

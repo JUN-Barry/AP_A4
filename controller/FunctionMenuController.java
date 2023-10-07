@@ -1,5 +1,7 @@
 package controller;
 
+import ConstructorClass.UserInfo;
+import Model.SignUPModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -45,6 +47,8 @@ public class FunctionMenuController {
 
     private Stage primaryStage;
 
+	private UserInfo user;
+
 	//private String fullName;
 
     public void setPrimaryStage(Stage primaryStage) {
@@ -55,15 +59,32 @@ public class FunctionMenuController {
         //this.fullName = fullName;
         fullNamefill.setText(fullName); // Set the fullName to the TextField
     }
+    
+    public void setUser(UserInfo user) {
+        this.user = user; //why do we need this? transfer the value from other class????
+    }
 
 
 	@FXML
-    private void editProfile() {
+    private void editProfile(ActionEvent event) {
         // Handle Edit Profile button click here
+		LoginScene LogInscene = new LoginScene(); // keep same
+		UpdateProfileController updateProfileController = LogInscene.getScene("/view/UpdateProfile.fxml", primaryStage); 
+		updateProfileController.setPrimaryStage(primaryStage);
+		//System.out.println(user.getUsername());
+		updateProfileController.setprofile(user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName());
+		// delete the content before
+		SignUPModel.deleteUserInfoFromTable(user.getUsername()); // delete it, and update again for next step, no need to check again
+		// we should note that, if  they dn't log out at single time, everytime into update, info is same
+		
     }
 
     @FXML
-    private void addPost() {
+    private void addPost(ActionEvent event) {
+		LoginScene LogInscene = new LoginScene(); // keep same
+		AddPostController addPostController = LogInscene.getScene("/view/addPost.fxml", primaryStage); 
+		addPostController.setPrimaryStage(primaryStage);
+    	
         // Handle Add Post button click here
     }
 
