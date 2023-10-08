@@ -89,18 +89,24 @@ public class FunctionMenuController {
     }
 
     @FXML
-    private void retrievePostByID() {
-        // Handle Retrieve Post by ID button click here
+    private void retrievePostByID(ActionEvent event) {
+    	LoginScene LogInscene = new LoginScene(); // keep same
+    	RetrievePostController retrievePostController = LogInscene.getScene("/view/RetrievePost.fxml", primaryStage); 
+    	retrievePostController.setPrimaryStage(primaryStage);
     }
 
     @FXML
     private void retrieveTopNPosts() {
-        // Handle Retrieve TOP N Posts button click here
+    	LoginScene LogInscene = new LoginScene(); // keep same
+    	TopNPostController topNPostController = LogInscene.getScene("/view/TopNPost.fxml", primaryStage); 
+    	topNPostController.setPrimaryStage(primaryStage);
     }
 
     @FXML
-    private void removePost() {
-        // Handle Remove Post button click here
+    private void removePost(ActionEvent event) {
+    	LoginScene LogInscene = new LoginScene(); // keep same
+    	RemovePostController removePostController = LogInscene.getScene("/view/RemovePost.fxml", primaryStage); 
+    	removePostController.setPrimaryStage(primaryStage);
     }
     
     @FXML

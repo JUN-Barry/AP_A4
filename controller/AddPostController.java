@@ -52,7 +52,7 @@ public class AddPostController {
 	private TableColumn<PostInfo, Integer> sharescolumn;
 
 	@FXML
-	private TableColumn<PostInfo, Integer> datetimecolumn;
+	private TableColumn<PostInfo, String> datetimecolumn;
 
 	@FXML
 	private TextField PostIDhandler;
@@ -94,7 +94,7 @@ public class AddPostController {
 		authorColumn.setCellValueFactory(new PropertyValueFactory<PostInfo, String>("author"));
 		likeColumn.setCellValueFactory(new PropertyValueFactory<PostInfo, Integer>("likes"));
 		sharescolumn.setCellValueFactory(new PropertyValueFactory<PostInfo, Integer>("shares"));
-		datetimecolumn.setCellValueFactory(new PropertyValueFactory<PostInfo, Integer>("datetime"));
+		datetimecolumn.setCellValueFactory(new PropertyValueFactory<PostInfo, String>("datetime"));
 
 		// Get values from text fields
 		int id = Integer.parseInt(PostIDhandler.getText());
