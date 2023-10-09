@@ -9,20 +9,24 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="Vbox" prefHeight="283.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RetrievePostController">
-   <HBox id="VBox" fx:id="Hbox" alignment="CENTER" prefHeight="59.0" prefWidth="750.0" style="-fx-background-color: #FFE4C4;">
+<VBox fx:id="Vbox" prefHeight="350.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RetrievePostController">
+   <HBox id="VBox" fx:id="Hbox" alignment="CENTER" prefHeight="77.0" prefWidth="750.0" style="-fx-background-color: #FFE4C4;">
       <children>
       
           <!-- Welcome Label -->
-          <Label prefHeight="38.0" prefWidth="177.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="    Retrieve Post" />
+          <Label prefHeight="43.0" prefWidth="262.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="    Retrieve Post &amp; Export" />
          <Button fx:id="BackTOmenu" mnemonicParsing="false" onAction="#BacktoMenu" text="Back to menu" textAlignment="CENTER" />
       </children>
    </HBox>
-   <AnchorPane fx:id="inputPane" prefHeight="62.0" prefWidth="750.0">
+   <AnchorPane fx:id="inputPane" prefHeight="107.0" prefWidth="750.0">
       <children>
          <Label layoutX="21.0" layoutY="23.0" prefHeight="17.0" prefWidth="40.0" text="ID" />
+         <Label layoutX="21.0" layoutY="69.0" text="Stored Direcctory" />
          <TextField fx:id="PostIDhandler" layoutX="71.0" layoutY="19.0" promptText="Unique Integer number." />
          <Button fx:id="SearchbUTTON" layoutX="262.0" layoutY="19.0" mnemonicParsing="false" onAction="#SearchPost" text="Search" />
+         <Label layoutX="435.0" layoutY="69.0" text="File Name" />
+         <TextField fx:id="filePath" layoutX="152.0" layoutY="65.0" prefHeight="25.0" prefWidth="251.0" />
+         <TextField fx:id="fileName" layoutX="534.0" layoutY="65.0" prefHeight="25.0" prefWidth="188.0" />
       </children>
    </AnchorPane>
    <TableView fx:id="tableView" prefHeight="117.0" prefWidth="750.0">
@@ -35,9 +39,10 @@
          <TableColumn fx:id="datetimecolumn" prefWidth="130.0" text="Date-time" />
      </columns>
    </TableView>
-   <AnchorPane fx:id="hintPane" prefHeight="41.0" prefWidth="750.0">
+   <AnchorPane fx:id="hintPane" prefHeight="48.0" prefWidth="750.0">
       <children>
-         <Label fx:id="statusLabel" layoutX="24.0" layoutY="4.0" prefHeight="25.0" prefWidth="386.0" textFill="#ee3d19" />
+         <Label fx:id="statusLabel" layoutX="14.0" layoutY="12.0" prefHeight="25.0" prefWidth="386.0" textFill="#ee3d19" />
+         <Button fx:id="ExportPost" layoutX="653.0" layoutY="12.0" mnemonicParsing="false" onAction="#exportPostintoCSV" style="-fx-background-color: #46eb19;" text="Export Post" textFill="#373936" />
       </children>
    </AnchorPane>
 </VBox>

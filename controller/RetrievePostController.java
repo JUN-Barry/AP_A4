@@ -32,7 +32,16 @@ public class RetrievePostController {
 	private TextField PostIDhandler;
 
 	@FXML
+	private TextField filePath;
+
+	@FXML
+	private TextField fileName;
+
+	@FXML
 	private Button SearchbUTTON;
+
+	@FXML
+	private Button ExportPost;
 
 	@FXML
 	private AnchorPane inputPane;
@@ -89,7 +98,7 @@ public class RetrievePostController {
 		datetimecolumn.setCellValueFactory(new PropertyValueFactory<PostInfo, String>("datetime"));
 
 		int id = Integer.parseInt(PostIDhandler.getText());
-		
+
 		if (!PostInfoModel.CheckIDexist(id)) {
 			ObservableList<PostInfo> ToaddPost = tableView.getItems();
 			ToaddPost.add(RetrievePostModel.RetrieveSinglePost(id));
@@ -98,4 +107,21 @@ public class RetrievePostController {
 			statusLabel.setText("Post ID not found.");
 		}
 	}
+
+	@FXML
+	private void exportPostintoCSV(ActionEvent event) {
+		String csvFilePath = filePath.getText();
+		int postID = Integer.parseInt(PostIDhandler.getText());
+		String filename = fileName.getText();
+
+		boolean result = RetrievePostModel.ExportSinglePost(csvFilePath, postID, filename);
+
+		if (result) {
+			statusLabel.setText("Export successful!");
+		} else {
+			statusLabel.setText("Export failed. Check your inputs and try again.");
+
+		}
+	}
+
 }

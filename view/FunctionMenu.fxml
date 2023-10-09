@@ -26,16 +26,13 @@
            <Button fx:id="addPostButton" onAction="#addPost" text="Add Post" />
       
            <!-- Retrieve Post by ID -->
-           <Button fx:id="retrievePostByIDButton" onAction="#retrievePostByID" text="Retrieve Post by ID" />
+           <Button fx:id="retrievePostByIDButton" onAction="#retrievePostByID" text="Retrieve Post by ID and Export" />
       
            <!-- Retrieve TOP N Posts -->
            <Button fx:id="retrieveTopNPostsButton" onAction="#retrieveTopNPosts" text="Retrieve TOP N Posts" />
       
            <!-- Remove Post -->
            <Button fx:id="removePostButton" onAction="#removePost" text="Remove Post" />
-      
-           <!-- Export Post by ID -->
-           <Button fx:id="exportPostByIDButton" onAction="#exportPostByID" text="Export Post by ID" />
      </items>
    </ToolBar>
 

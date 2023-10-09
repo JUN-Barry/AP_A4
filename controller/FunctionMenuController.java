@@ -29,9 +29,6 @@ public class FunctionMenuController {
 
     @FXML
     private Button removePostButton;
-    
-    @FXML
-    private Button exportPostByIDButton;
 
     @FXML
     private Button upgradeToVIPButton;
