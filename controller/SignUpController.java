@@ -1,7 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import Model.SignUPModel;
+import Model.UserinfoModel;
 import RunHub.Main;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -51,11 +51,11 @@ public class SignUpController {
 		String firstName = firstNameField.getText();
 		String lastName = lastNameField.getText();
 
-		if (SignUPModel.CheckUsername(username)) {
+		if (UserinfoModel.CheckUsername(username)) {
 			statusLabel.setText("Signup successful, Back to Log IN page again.");
 
 			// insert the value into database
-			SignUPModel.SignUpUserInfoINTOTable(username, password, firstName, lastName);
+			UserinfoModel.SignUpUserInfoINTOTable(username, password, firstName, lastName);
 			
 
 

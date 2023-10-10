@@ -1,17 +1,26 @@
 package controller;
 
 import ConstructorClass.UserInfo;
-import Model.SignUPModel;
+//import Model.UserinfoModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ToolBar;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+//import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import view.LoginScene;
 
 public class FunctionMenuController {
 
+	@FXML
+	private VBox wholeMenu;
+	
+	@FXML
+	private HBox welcomeINFO;
+	
     @FXML
     private TextField fullNamefill;
 
@@ -26,10 +35,20 @@ public class FunctionMenuController {
 
     @FXML
     private Button retrieveTopNPostsButton;
+    
 
     @FXML
     private Button removePostButton;
-
+    
+    @FXML
+    private ToolBar VipToolBar;
+    
+    @FXML
+    private ToolBar NormalUserTool;
+    
+    @FXML 
+    private ToolBar LogoutToolBar;
+    
     @FXML
     private Button upgradeToVIPButton;
 
@@ -71,7 +90,7 @@ public class FunctionMenuController {
 		//System.out.println(user.getUsername());
 		updateProfileController.setprofile(user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName());
 		// delete the content before
-		SignUPModel.deleteUserInfoFromTable(user.getUsername()); // delete it, and update again for next step, no need to check again
+		//SignUPModel.deleteUserInfoFromTable(user.getUsername()); // it is not good here, if exist, should update, 
 		// we should note that, if  they dn't log out at single time, everytime into update, info is same
 		
     }
@@ -93,7 +112,7 @@ public class FunctionMenuController {
     }
 
     @FXML
-    private void retrieveTopNPosts() {
+    private void retrieveTopNPosts(ActionEvent event) {
     	LoginScene LogInscene = new LoginScene(); // keep same
     	TopNPostController topNPostController = LogInscene.getScene("/view/TopNPost.fxml", primaryStage); 
     	topNPostController.setPrimaryStage(primaryStage);
@@ -105,15 +124,14 @@ public class FunctionMenuController {
     	RemovePostController removePostController = LogInscene.getScene("/view/RemovePost.fxml", primaryStage); 
     	removePostController.setPrimaryStage(primaryStage);
     }
-    
-    @FXML
-    private void exportPostByID(){
-    	
-    }
 
     @FXML
-    private void upgradeToVIP() {
-        // Handle Upgrade to VIP button click here
+    private void upgradeToVIP(ActionEvent event) {
+    	LoginScene LogInscene = new LoginScene(); // keep same
+		UpgradeVipController upgradeVipController = LogInscene.getScene("/view/UpgradeVip.fxml", primaryStage); 
+		upgradeVipController.setPrimaryStage(primaryStage);
+		//System.out.println(user.getUsername());
+		upgradeVipController.setUsername(user.getUsername());
     }
 
     @FXML

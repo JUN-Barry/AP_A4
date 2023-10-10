@@ -7,8 +7,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="262.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FunctionMenuController">
-   <HBox id="VBox" prefHeight="46.0" prefWidth="646.0">
+<VBox fx:id="wholeMenu" prefHeight="262.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FunctionMenuController">
+   <HBox id="VBox" fx:id="welcomeINFO" prefHeight="46.0" prefWidth="646.0">
       <children>
       
           <!-- Welcome Label -->
@@ -16,7 +16,7 @@
          <TextField fx:id="fullNamefill" prefHeight="37.0" prefWidth="169.0" />
       </children>
    </HBox>
-   <ToolBar prefHeight="59.0" prefWidth="639.0">
+   <ToolBar fx:id="NormalUserTool" prefHeight="59.0" prefWidth="639.0">
      <items>
       
            <!-- Edit Profile -->
@@ -37,7 +37,7 @@
    </ToolBar>
 
     <!-- ToolBar for Menu Items -->
-    <ToolBar orientation="VERTICAL" prefHeight="104.0" prefWidth="688.0" style="-fx-background-color: #f5f116;">
+    <ToolBar fx:id="VipToolBar" orientation="VERTICAL" prefHeight="104.0" prefWidth="688.0" style="-fx-background-color: #f5f116;">
 
         <!-- Upgrade to VIP -->
         <Button fx:id="upgradeToVIPButton" onAction="#upgradeToVIP" text="Upgrade to VIP" textFill="#282826" />
@@ -48,7 +48,7 @@
         <!-- Bulk Import Social Media Posts (VIP) -->
         <Button fx:id="bulkImportPostsVIPButton" onAction="#bulkImportPostsVIP" text="Bulk Import Social Media Posts (VIP)" textFill="#282826" />
     </ToolBar>
-   <ToolBar nodeOrientation="RIGHT_TO_LEFT" orientation="VERTICAL" prefHeight="38.0" prefWidth="683.0">
+   <ToolBar fx:id="LogoutToolBar" nodeOrientation="RIGHT_TO_LEFT" orientation="VERTICAL" prefHeight="38.0" prefWidth="683.0">
      <items>
       
            <!-- Log Out -->
