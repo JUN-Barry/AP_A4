@@ -22,7 +22,7 @@ public class CreateUserAndPostTable {
 										+ "password VARCHAR(8) NOT NULL,"
 										+ "first_name VARCHAR(20) NOT NULL,"
 										+ "last_name VARCHAR(20) NOT NULL,"
-										+ "isVip int DEFAULT 0,"
+										+ "role int DEFAULT 0,"
 										+ "PRIMARY KEY (user_name))");
 			
 			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS " + TABLE1_NAME 

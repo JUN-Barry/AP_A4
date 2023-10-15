@@ -97,12 +97,31 @@ public class AddPostController {
 		datetimecolumn.setCellValueFactory(new PropertyValueFactory<PostInfo, String>("datetime"));
 
 		// Get values from text fields
-		int id = Integer.parseInt(PostIDhandler.getText());
-		String content = ContentHandler.getText();
-		String author = AuthorHandler.getText();
-		int likes = Integer.parseInt(Likes.getText());
-		int shares = Integer.parseInt(Shares.getText());
-		String datetime = datetimehalder.getText();
+//		int id = Integer.parseInt(PostIDhandler.getText());
+//		String content = ContentHandler.getText();
+//		String author = AuthorHandler.getText();
+//		
+//		int likes = Integer.parseInt(Likes.getText());
+//		int shares = Integer.parseInt(Shares.getText());
+//		String datetime = datetimehalder.getText();
+		
+		String idText = PostIDhandler.getText();
+	    String content = ContentHandler.getText();
+	    String author = AuthorHandler.getText();
+	    String likesText = Likes.getText();
+	    String sharesText = Shares.getText();
+	    String datetime = datetimehalder.getText();
+
+	    // Check for null or empty values
+	    if (idText.isEmpty() || content.isEmpty() || author.isEmpty() || likesText.isEmpty() || sharesText.isEmpty() || datetime.isEmpty()) {
+	        statusLabel.setText("Please fill in all fields.");
+	        return;
+	    }
+
+	    // Parse the values
+	    int id = Integer.parseInt(idText);
+	    int likes = Integer.parseInt(likesText);
+	    int shares = Integer.parseInt(sharesText);
 
 		// Create a new PostInfo object
 		if (PostInfoModel.CheckIDexist(id)) {

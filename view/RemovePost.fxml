@@ -40,7 +40,7 @@
       
                  <!-- Log Out -->
            <Button fx:id="Deletebutton" contentDisplay="RIGHT" layoutX="640.0" layoutY="8.0" onAction="#RemovePost" prefHeight="25.0" prefWidth="96.0" style="-fx-background-color: #d3330b;" text="Remove" textAlignment="CENTER" textFill="#1e1e1d" />
-         <Label fx:id="statusLabel" layoutX="24.0" layoutY="4.0" prefHeight="25.0" prefWidth="386.0" textFill="#ee3d19" />
+         <Label fx:id="statusLabel" layoutX="24.0" layoutY="4.0" prefHeight="25.0" prefWidth="564.0" textFill="#ee3d19" />
       </children>
    </AnchorPane>
 </VBox>

@@ -59,6 +59,28 @@ public class ValidUserLoginModel {
 	    
 	    return null; // Return null if authentication fails.
 	}
+	
+	public static boolean CheckVIP(String username) {
+	    String sql = "SELECT isVip FROM User_info WHERE user_name = ?";
+
+	    try (Connection con = DataAnalyticsHubConnection.getConnection();
+	         PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+	        pstmt.setString(1, username);
+
+	        try (ResultSet resultSet = pstmt.executeQuery()) {
+	            if (resultSet.next()) {
+	                return resultSet.getBoolean("isVip");
+	            } else {
+	                return false; // No user found with the given username
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+
 
 
 

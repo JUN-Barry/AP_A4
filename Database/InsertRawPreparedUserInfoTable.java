@@ -11,13 +11,18 @@ public class InsertRawPreparedUserInfoTable {
 		final String TABLE_NAME = "User_info";
 		String sql = "INSERT INTO " + TABLE_NAME + " (user_name, password, first_name, last_name)"
 				+ " VALUES (?, ?, ?, ?)";
+		
+//		String sql = "INSERT INTO " + TABLE_NAME + " (user_name, password, first_name, last_name, role)"
+//				+ " VALUES (?, ?, ?, ?, ?)";
 
 		try (Connection con = DataAnalyticsHubConnection.getConnection();
 				PreparedStatement stmt = con.prepareStatement(sql);) {
-			stmt.setString(1, "Jac");
+			stmt.setString(1, "Bay");
 			stmt.setString(2, "123");
-			stmt.setString(3, "Barry");
-			stmt.setString(4, "YAN");
+			stmt.setString(3, "BA");
+			stmt.setString(4, "Xing");
+			//stmt.setString(5, "1"); // 1 means VIP
+			//stmt.setString(5, "2"); // 2 means Admin
 
 			int result = stmt.executeUpdate();
 

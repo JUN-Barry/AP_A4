@@ -26,6 +26,38 @@ public class UserinfoModel {
 			return false;
 		}
 	}
+	
+	public static boolean CheckAdmin(String username) {
+		String sql = "SELECT * FROM User_info WHERE user_name = ? AND role = 2";
+
+		try (Connection con = DataAnalyticsHubConnection.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+			pstmt.setString(1, username);
+			try (ResultSet resultSet = pstmt.executeQuery()) {
+				if (resultSet.next()) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public static boolean validUserToEditProfile(String username) {
+	    if (!CheckAdmin(SharedUsernameModel.getUsername())){
+	        return true;  //Admin can edit anyone's profile
+	    } else if (username.equals(SharedUsernameModel.getUsername())) {
+	        return true; // normal user can only edit his own profile
+	    } else {
+	        return false;
+	    }
+	}
+
+	
 
 	public static void SignUpUserInfoINTOTable(String username, String password, String firstName, String lastName) {
 		final String TABLE_NAME = "User_info";
@@ -76,7 +108,7 @@ public class UserinfoModel {
 
 	public static void upgradeVIP(String username) {
 		final String TABLE_NAME = "User_info";
-		String sql = "UPDATE " + TABLE_NAME + " SET isVip = 1 WHERE user_name = ?";
+		String sql = "UPDATE " + TABLE_NAME + " SET role = 1 WHERE user_name = ?";
 
 		try (Connection con = DataAnalyticsHubConnection.getConnection();
 				PreparedStatement stmt = con.prepareStatement(sql)) {

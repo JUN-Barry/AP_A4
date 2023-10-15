@@ -3,6 +3,8 @@ package controller;
 import ConstructorClass.PostInfo;
 import Model.PostInfoModel;
 import Model.RetrievePostModel;
+import Model.SharedUsernameModel;
+import Model.UserinfoModel;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -109,25 +111,35 @@ public class RemovePostController {
 	@FXML
 	private void RemovePost(ActionEvent event) {
 		int id = Integer.parseInt(PostIDhandler.getText());
-		PostInfoModel.removePost(id);
+		String permittedUser = SharedUsernameModel.getUsername(); 
+		System.out.println(permittedUser);
+		
+		
+		//PostInfoModel.removePost(id);
+		
+		
 		ObservableList<PostInfo> items = tableView.getItems();
 
 		// Find the PostInfo object to remove based on its ID
 		PostInfo postToRemove = null;
 		for (PostInfo post : items) {
-			if (post.getId() == id) {
-				postToRemove = post;
+			if (post.getId() == id ) {
+				postToRemove = post ;
 				break;
 			}
 		}
 
-		// If the post was found, remove it from the ObservableList
 		if (postToRemove != null) {
-			items.remove(postToRemove);
-		}
-
-		// Clear the PostIDhandler TextField
-		PostIDhandler.clear();
-
-	}
-}
+	        if (postToRemove.getAuthor().equals(permittedUser) || (!UserinfoModel.CheckAdmin(permittedUser)) ){
+	            // If the post was found, remove it from the ObservableList and the database
+	            items.remove(postToRemove);
+	            PostInfoModel.removePost(id);
+	            PostIDhandler.clear();
+	            statusLabel.setText("The post has been successfully removed.");
+	        } else {
+	            statusLabel.setText("Have NO right to remove post that are not created by Author (Username).");
+	        }
+	    } else {
+	        statusLabel.setText("Post with ID " + id + " not found.");
+	    }
+}}

@@ -1,12 +1,12 @@
 package controller;
 
-import ConstructorClass.UserInfo;
+//import ConstructorClass.UserInfo;
 import Model.UserinfoModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
+//import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import view.LoginScene;
@@ -60,9 +60,15 @@ public class UpdateProfileController {
 		String NewfirstName = firstNameField.getText();
 		String NewlastName = lastNameField.getText();
 
+		if (UserinfoModel.validUserToEditProfile(Newusername)) {
 
-		UserinfoModel.SignUpUserInfoINTOTable(Newusername, Newpassword, NewfirstName, NewlastName);
-		statusLabel.setText("User information has been updated.");
+			UserinfoModel.SignUpUserInfoINTOTable(Newusername, Newpassword, NewfirstName, NewlastName);
+			statusLabel.setText("User information has been updated.");
+		}
+
+		else {
+			statusLabel.setText("You don't have right to edit other's profile.");
+		}
 
 	}
 
