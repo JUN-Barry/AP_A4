@@ -59,9 +59,6 @@ public class LoginController {
 //       SharedUsernameModel.setUsername(username);
        SharedUsernameModel.setFullname(fullName);
 
-		// UserInfo user = ValidUserLoginModel.getUserInfo(username);
-
-		// WelcomeController.setFullName(fullName);
 
 		if (fullName != null) {
 			statusLabel.setText("Login successful, welcome " + fullName + ".");

@@ -8,6 +8,20 @@ import java.sql.SQLException;
 import ConstructorClass.UserInfo;
 
 public class ValidUserLoginModel {
+	
+	private static ValidUserLoginModel instance = null;
+
+    // Singleton pattern, ensures that only one instance of the class exists throughout your application's lifecycle
+    private ValidUserLoginModel() {
+    }
+
+    // Public method to access the instance (Singleton pattern)
+    public static ValidUserLoginModel getInstance() {
+        if (instance == null) {
+            instance = new ValidUserLoginModel();
+        }
+        return instance;
+    }
 
 	public static String authenticateUser(String username, String password) {
 	    String sql = "SELECT first_name, last_name FROM User_info WHERE user_name = ? AND password = ?";
@@ -60,8 +74,8 @@ public class ValidUserLoginModel {
 	    return null; // Return null if authentication fails.
 	}
 	
-	public static boolean CheckVIP(String username) {
-	    String sql = "SELECT isVip FROM User_info WHERE user_name = ?";
+	public static boolean CheckRole(String username) {
+	    String sql = "SELECT * FROM User_info WHERE user_name = ? and (role = 1 OR role = 2)";
 
 	    try (Connection con = DataAnalyticsHubConnection.getConnection();
 	         PreparedStatement pstmt = con.prepareStatement(sql)) {
@@ -70,7 +84,7 @@ public class ValidUserLoginModel {
 
 	        try (ResultSet resultSet = pstmt.executeQuery()) {
 	            if (resultSet.next()) {
-	                return resultSet.getBoolean("isVip");
+	                return true;
 	            } else {
 	                return false; // No user found with the given username
 	            }

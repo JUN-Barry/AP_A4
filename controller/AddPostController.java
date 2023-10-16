@@ -96,56 +96,50 @@ public class AddPostController {
 		sharescolumn.setCellValueFactory(new PropertyValueFactory<PostInfo, Integer>("shares"));
 		datetimecolumn.setCellValueFactory(new PropertyValueFactory<PostInfo, String>("datetime"));
 
-		// Get values from text fields
-//		int id = Integer.parseInt(PostIDhandler.getText());
-//		String content = ContentHandler.getText();
-//		String author = AuthorHandler.getText();
-//		
-//		int likes = Integer.parseInt(Likes.getText());
-//		int shares = Integer.parseInt(Shares.getText());
-//		String datetime = datetimehalder.getText();
-		
 		String idText = PostIDhandler.getText();
-	    String content = ContentHandler.getText();
-	    String author = AuthorHandler.getText();
-	    String likesText = Likes.getText();
-	    String sharesText = Shares.getText();
-	    String datetime = datetimehalder.getText();
+		String content = ContentHandler.getText();
+		String author = AuthorHandler.getText();
+		String likesText = Likes.getText();
+		String sharesText = Shares.getText();
+		String datetime = datetimehalder.getText();
 
-	    // Check for null or empty values
-	    if (idText.isEmpty() || content.isEmpty() || author.isEmpty() || likesText.isEmpty() || sharesText.isEmpty() || datetime.isEmpty()) {
-	        statusLabel.setText("Please fill in all fields.");
-	        return;
-	    }
+		// Check for null or empty values
+		if (idText.isEmpty() || content.isEmpty() || author.isEmpty() || likesText.isEmpty() || sharesText.isEmpty()
+				|| datetime.isEmpty()) {
+			statusLabel.setText("Please fill in all fields.");
+			return;
+		}
 
-	    // Parse the values
-	    int id = Integer.parseInt(idText);
-	    int likes = Integer.parseInt(likesText);
-	    int shares = Integer.parseInt(sharesText);
+		try {
+			int id = Integer.parseInt(idText);
+			int likes = Integer.parseInt(likesText);
+			int shares = Integer.parseInt(sharesText);
 
-		// Create a new PostInfo object
-		if (PostInfoModel.CheckIDexist(id)) {
-			if (CheckPostFormatModel.isNonNegativeInt(id) && CheckPostFormatModel.hasNoComma(content)
-					&& CheckPostFormatModel.hasNoComma(author) && CheckPostFormatModel.isNonNegativeInt(likes)
-					&& CheckPostFormatModel.isNonNegativeInt(shares)
-					&& CheckPostFormatModel.isValidDateTime(datetime)) {
+			if (PostInfoModel.CheckIDexist(id)) {
+				if (CheckPostFormatModel.isNonNegativeInt(id) && CheckPostFormatModel.hasNoComma(content)
+						&& CheckPostFormatModel.hasNoComma(author) && CheckPostFormatModel.isNonNegativeInt(likes)
+						&& CheckPostFormatModel.isNonNegativeInt(shares)
+						&& CheckPostFormatModel.isValidDateTime(datetime)) {
 
-				PostInfo newPost = new PostInfo(id, content, author, likes, shares, datetime);
-				System.out.println(newPost.getLikes());
+					PostInfo newPost = new PostInfo(id, content, author, likes, shares, datetime);
+					System.out.println(newPost.getLikes());
 
-				ObservableList<PostInfo> ToaddPost = tableView.getItems();
-				ToaddPost.add(newPost);
-				tableView.setItems(ToaddPost);
-				
-				PostInfoModel.PostInfoIntoTable(id, content, author, likes, shares, datetime); // ADD THE post information into DB
+					ObservableList<PostInfo> ToaddPost = tableView.getItems();
+					ToaddPost.add(newPost);
+					tableView.setItems(ToaddPost);
 
-				// Optionally, display a status message
-				statusLabel.setText("New post added!");
+					PostInfoModel.PostInfoIntoTable(id, content, author, likes, shares, datetime); // ADD THE post
+					statusLabel.setText("New post added!");
+				} else {
+					statusLabel.setText("Please enter valid contents. Have a check please.");
+				}
 			} else {
-				statusLabel.setText("Please enter valid contents. Have a check please.");
+				statusLabel.setText("ID has already existed in the System, change one please.");
 			}
-		} else {
-			statusLabel.setText("ID has already existed in the System, change one please.");
+
+		} catch (NumberFormatException e) {
+			statusLabel.setText("ID, Likes, and Shares must be valid integers.");
+			return;
 		}
 	}
 
@@ -157,7 +151,5 @@ public class AddPostController {
 		FunctionMenuController functionmenucontroller = LogInscene.getScene("/view/FunctionMenu.fxml",
 				this.primaryStage);
 		functionmenucontroller.setPrimaryStage(this.primaryStage);
-
-		// Your other controller methods
 	}
 }

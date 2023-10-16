@@ -6,6 +6,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PostInfoModel {
+	private static PostInfoModel instance = null;
+
+    // Singleton pattern, ensures that only one instance of the class exists throughout your application's lifecycle
+    private PostInfoModel() {
+    }
+
+    // Public method to access the instance (Singleton pattern)
+    public static PostInfoModel getInstance() {
+        if (instance == null) {
+            instance = new PostInfoModel();
+        }
+        return instance;
+    }
 
 	public static boolean CheckIDexist(int ID) {
 		String sql = "SELECT * FROM Post_info WHERE ID = ?";
@@ -28,6 +41,28 @@ public class PostInfoModel {
 			return false;
 		}
 	}
+	
+	public static boolean CheckAuthorExist(String author) {
+	    String sql = "SELECT * FROM Post_info WHERE author = ?";
+
+	    try (Connection con = DataAnalyticsHubConnection.getConnection();
+	         PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+	        pstmt.setString(1, author);
+
+	        try (ResultSet resultSet = pstmt.executeQuery()) {
+	            if (resultSet.next()) {
+	                return true; // Author exists in the table
+	            } else {
+	                return false; // Author doesn't exist in the table
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false; // An error occurred
+	    }
+	}
+
 
 	public static void PostInfoIntoTable(int id, String content, String author, int likes, int shares,
 			String datetime) {

@@ -142,8 +142,10 @@ public class FunctionMenuController {
 	private void dataVisualizationVIP() {
 		String username = SharedUsernameModel.getUsername();
 
-		if (ValidUserLoginModel.CheckVIP(username)) {
-			// Implement your data visualization logic for VIP users here
+		if (ValidUserLoginModel.CheckRole(username)) {
+			LoginScene LogInscene = new LoginScene(); // keep same
+			PieChartController pieChartController = LogInscene.getScene("/view/PieChart.fxml", primaryStage);
+			pieChartController.setPrimaryStage(primaryStage);
 		} else {
 			// Display a message to users who are not VIP
 			statuslabel.setText("You don't have the right to use this function. Please upgrade to VIP.");
@@ -152,7 +154,16 @@ public class FunctionMenuController {
 
 	@FXML
 	private void bulkImportPostsVIP() {
-		// Handle Bulk Import Social Media Posts (VIP) button click here
+		String username = SharedUsernameModel.getUsername();
+
+		if (ValidUserLoginModel.CheckRole(username)) {
+			LoginScene LogInscene = new LoginScene(); // keep same
+			ImportPostController importPostController = LogInscene.getScene("/view/ImportPost.fxml", primaryStage);
+			importPostController.setPrimaryStage(primaryStage);
+		} else {
+			// Display a message to users who are not VIP
+			statuslabel.setText("You don't have the right to use this function. Please upgrade to VIP.");
+		}
 	}
 
 	@FXML

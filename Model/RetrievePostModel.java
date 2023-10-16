@@ -12,6 +12,24 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class RetrievePostModel {
+	
+	private static RetrievePostModel instance = null;
+
+    // Singleton pattern, ensures that only one instance of the class exists throughout your application's lifecycle
+    private RetrievePostModel() {
+    }
+
+    // Public method to access the instance (Singleton pattern)
+    public static RetrievePostModel getInstance() {
+        if (instance == null) {
+            instance = new RetrievePostModel();
+        }
+        return instance;
+    }
+	
+	
+	
+	
 	public static PostInfo RetrieveSinglePost(int ID) {
 	    String sql = "SELECT ID, content, author, likes, shares, Date FROM Post_info WHERE ID = ?";
 	    PostInfo result = null;

@@ -6,6 +6,20 @@ public class SharedUsernameModel {
     private static String firstName;
     private static String lastName;
     private static String password;
+    
+    private static SharedUsernameModel instance = null;
+
+    // Singleton pattern, ensures that only one instance of the class exists throughout your application's lifecycle
+    private SharedUsernameModel() {
+    }
+
+    // Public method to access the instance (Singleton pattern)
+    public static SharedUsernameModel getInstance() {
+        if (instance == null) {
+            instance = new SharedUsernameModel();
+        }
+        return instance;
+    }
 
     public static String getUsername() {
         return username;

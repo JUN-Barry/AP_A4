@@ -95,51 +95,65 @@ public class RemovePostController {
 		sharescolumn.setCellValueFactory(new PropertyValueFactory<PostInfo, Integer>("shares"));
 		datetimecolumn.setCellValueFactory(new PropertyValueFactory<PostInfo, String>("datetime"));
 
-// Get values from text fields
-		int id = Integer.parseInt(PostIDhandler.getText());
+		String ID = PostIDhandler.getText();
 
-		if (!PostInfoModel.CheckIDexist(id)) {
-			ObservableList<PostInfo> ToaddPost = tableView.getItems();
-			ToaddPost.add(RetrievePostModel.RetrieveSinglePost(id));
-			tableView.setItems(ToaddPost);
+		if (ID.isEmpty()) {
+			statusLabel.setText("No input provided.");
+			return;
+		}
 
-		} else {
-			statusLabel.setText("Post ID not found.");
+		try {
+			int id = Integer.parseInt(ID);
+
+			if (id < 1) {
+				statusLabel.setText("Post ID must be a positive integer.");
+				return;
+			}
+
+			if (!PostInfoModel.CheckIDexist(id)) {
+				ObservableList<PostInfo> ToaddPost = tableView.getItems();
+				ToaddPost.add(RetrievePostModel.RetrieveSinglePost(id));
+				tableView.setItems(ToaddPost);
+
+			} else {
+				statusLabel.setText("Post ID not found.");
+			}
+		} catch (NumberFormatException e) {
+			statusLabel.setText("Post ID must be a valid positive integer.");
 		}
 	}
 
 	@FXML
 	private void RemovePost(ActionEvent event) {
 		int id = Integer.parseInt(PostIDhandler.getText());
-		String permittedUser = SharedUsernameModel.getUsername(); 
+		String permittedUser = SharedUsernameModel.getUsername();
 		System.out.println(permittedUser);
-		
-		
-		//PostInfoModel.removePost(id);
-		
-		
+
+		// PostInfoModel.removePost(id);
+
 		ObservableList<PostInfo> items = tableView.getItems();
 
 		// Find the PostInfo object to remove based on its ID
 		PostInfo postToRemove = null;
 		for (PostInfo post : items) {
-			if (post.getId() == id ) {
-				postToRemove = post ;
+			if (post.getId() == id) {
+				postToRemove = post;
 				break;
 			}
 		}
 
 		if (postToRemove != null) {
-	        if (postToRemove.getAuthor().equals(permittedUser) || (!UserinfoModel.CheckAdmin(permittedUser)) ){
-	            // If the post was found, remove it from the ObservableList and the database
-	            items.remove(postToRemove);
-	            PostInfoModel.removePost(id);
-	            PostIDhandler.clear();
-	            statusLabel.setText("The post has been successfully removed.");
-	        } else {
-	            statusLabel.setText("Have NO right to remove post that are not created by Author (Username).");
-	        }
-	    } else {
-	        statusLabel.setText("Post with ID " + id + " not found.");
-	    }
-}}
+			if (postToRemove.getAuthor().equals(permittedUser) || (!UserinfoModel.CheckAdmin(permittedUser))) {
+				// If the post was found, remove it from the ObservableList and the database
+				items.remove(postToRemove);
+				PostInfoModel.removePost(id);
+				PostIDhandler.clear();
+				statusLabel.setText("The post has been successfully removed.");
+			} else {
+				statusLabel.setText("Have NO right to remove post that are not created by Author (Username).");
+			}
+		} else {
+			statusLabel.setText("Post with ID " + id + " not found.");
+		}
+	}
+}

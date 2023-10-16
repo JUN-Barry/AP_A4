@@ -97,31 +97,41 @@ public class RetrievePostController {
 		sharescolumn.setCellValueFactory(new PropertyValueFactory<PostInfo, Integer>("shares"));
 		datetimecolumn.setCellValueFactory(new PropertyValueFactory<PostInfo, String>("datetime"));
 
-		int id = Integer.parseInt(PostIDhandler.getText());
+		try {
+			int id = Integer.parseInt(PostIDhandler.getText());
 
-		if (!PostInfoModel.CheckIDexist(id)) {
-			ObservableList<PostInfo> ToaddPost = tableView.getItems();
-			ToaddPost.add(RetrievePostModel.RetrieveSinglePost(id));
-			tableView.setItems(ToaddPost);
-		} else {
-			statusLabel.setText("Post ID not found.");
+			if (!PostInfoModel.CheckIDexist(id)) {
+				ObservableList<PostInfo> ToaddPost = tableView.getItems();
+				ToaddPost.add(RetrievePostModel.RetrieveSinglePost(id));
+				tableView.setItems(ToaddPost);
+			} else {
+				statusLabel.setText("Post ID not found.");
+			}
+		} catch (NumberFormatException e) {
+			statusLabel.setText("Please enter a valid Post ID.");
 		}
+
 	}
 
 	@FXML
 	private void exportPostintoCSV(ActionEvent event) {
-		String csvFilePath = filePath.getText();
-		int postID = Integer.parseInt(PostIDhandler.getText());
-		String filename = fileName.getText();
+		try {
+			String csvFilePath = filePath.getText();
+			int postID = Integer.parseInt(PostIDhandler.getText());
+			String filename = fileName.getText();
 
-		boolean result = RetrievePostModel.ExportSinglePost(csvFilePath, postID, filename);
+			boolean result = RetrievePostModel.ExportSinglePost(csvFilePath, postID, filename);
 
-		if (result) {
-			statusLabel.setText("Export successful!");
-		} else {
-			statusLabel.setText("Export failed. Check your inputs and try again.");
+			if (result) {
+				statusLabel.setText("Export successful!");
+			} else {
+				statusLabel.setText("Export failed. Check your inputs and try again.");
 
+			}
+		} catch (Exception e) {
+			statusLabel.setText("An error occurred. Check your inputs and try again.");
 		}
+
 	}
 
 }

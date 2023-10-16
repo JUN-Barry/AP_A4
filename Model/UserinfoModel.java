@@ -6,6 +6,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserinfoModel {
+	
+	private static UserinfoModel instance = null;
+
+    // Singleton pattern, ensures that only one instance of the class exists throughout your application's lifecycle
+    private UserinfoModel() {
+    }
+
+    // Public method to access the instance (Singleton pattern)
+    public static UserinfoModel getInstance() {
+        if (instance == null) {
+            instance = new UserinfoModel();
+        }
+        return instance;
+    }
 
 	public static boolean CheckUsername(String username) {
 		String sql = "SELECT * FROM User_info WHERE user_name = ?";

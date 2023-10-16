@@ -1,6 +1,7 @@
 package controller;
 
 import ConstructorClass.PostInfo;
+import Model.PostInfoModel;
 import Model.RetrievePostModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,8 +68,8 @@ public class TopNPostController {
 	public void setPrimaryStage(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 	}
-	
-	//private Integer NumertopN;
+
+	// private Integer NumertopN;
 
 	@FXML
 	private void BacktoMenu(ActionEvent event) {
@@ -95,24 +96,41 @@ public class TopNPostController {
 		String authorID = AuthorIDhandler.getText();
 		String topN = TopNumber.getText();
 
+		// all empty
 		if (authorID.isEmpty() && topN.isEmpty()) {
 			statusLabel.setText("No input provided.");
 			return;
 		}
-
-		if (authorID.isEmpty() && !topN.isEmpty()) {
-			int NumertopN = Integer.parseInt(topN);
-			tableView.setItems(RetrievePostModel.RetrieveAllUserTopPosts(NumertopN));
-		}
-
-		if (!authorID.isEmpty() && topN.isEmpty()) {
+		
+		// topN empty
+		if (topN.isEmpty()) {
 			statusLabel.setText("Please enter TopN number.");
 			return;
 		}
 
-		if (!authorID.isEmpty() && !topN.isEmpty()) {
-			int NumertopN = Integer.parseInt(topN);
-			tableView.setItems(RetrievePostModel.RetrieveOneUSERTopPosts(authorID, NumertopN));
+
+		try {
+			int NumtopN = Integer.parseInt(topN);
+			if (NumtopN < 1) {
+				statusLabel.setText("TopN must be a positive number.");
+				return;
+			}
+
+			if (authorID.isEmpty() && !topN.isEmpty()) {
+				tableView.setItems(RetrievePostModel.RetrieveAllUserTopPosts(NumtopN));
+			}
+
+			else if (PostInfoModel.CheckAuthorExist(authorID) &&!authorID.isEmpty() && !topN.isEmpty()) {
+				tableView.setItems(RetrievePostModel.RetrieveOneUSERTopPosts(authorID, NumtopN));
+			}
+			
+			else {
+				statusLabel.setText("Retrieve failed, check the input content again.");
+			}
+			
+		} catch (NumberFormatException e) {
+			statusLabel.setText("TopN must be a valid positive integer.");
 		}
+		
 	}
 }

@@ -1,6 +1,20 @@
 package Model;
 
 public class CheckPostFormatModel {
+	
+	private static CheckPostFormatModel instance = null;
+
+    // Singleton pattern, ensures that only one instance of the class exists throughout your application's lifecycle
+    private CheckPostFormatModel() {
+    }
+
+    // Public method to access the instance (Singleton pattern)
+    public static CheckPostFormatModel getInstance() {
+        if (instance == null) {
+            instance = new CheckPostFormatModel();
+        }
+        return instance;
+    }
 
     public static boolean isNonNegativeInt(int inputValue) {
         return inputValue >= 0;
